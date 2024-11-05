@@ -1,14 +1,14 @@
 def check(ke, u, v, e, n):
-    q, used = [u], [0] * (n + 1)
-    used[u] = 1
-    while q:
+    q, un = [u], [0] * (n + 1)
+    un[u] = 1
+    while len(q) > 0:
         x = q.pop()
         if x == v:
             return False
         for i in ke[x]:
-            if used[i] == 0 and i != e:
+            if un[i] == 0 and i != e:
                 q.append(i)
-                used[i] = 1
+                un[i] = 1
     return True
 
 if __name__ == '__main__':
@@ -16,11 +16,12 @@ if __name__ == '__main__':
     for _ in range(t):
         n, m, u, v = map(int, input().split())
         ke = {x: [] for x in range(1, n + 1)}
-        for _ in range(m):
+        # ke = {}
+        # for x in range(1, n + 1):
+        #     ke[x] = []
+        for i in range(m):
             x, y = map(int, input().split())
             ke[x].append(y)
-            ke[y].append(x) 
-
         cnt = 0
         for i in range(1, n + 1):
             if i != u and i != v:
