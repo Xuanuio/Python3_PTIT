@@ -1,13 +1,12 @@
+import re
+
 if __name__ == '__main__':
-    t = int(input())
+    n = int(input())
     a = []
-    for _ in range(t):
-        b = input()
-        for c in ",.?!:;()-/":
-            b = b.replace(c, ' ')
-        s = b.split()
-        for x in s:
-            a.append(x.lower())
+    for i in range(n):
+        for s in re.split("[^a-z0-9]", input().lower()):
+            if s != '':
+                a.append(s)
     d = dict([])
     for x in a:
         if x in d:
